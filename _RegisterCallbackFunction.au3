@@ -52,18 +52,14 @@ Global $d__CDF_SYS_DEFAULTTIMER			= 5000
 
 Global $c__CBF_User32_DLL				= @SystemDir & "\User32.dll"
 
-If @AutoItVersion < "3.3.2.0" Then
-   $s__GUICtrl_SOH_OnExitFunc = Execute('Opt("OnExitFunc", "__RCF_Exit")')
-Else
-   Execute('OnAutoItExitRegister("__RCF_Exit")')
-EndIf
+Execute('OnAutoItExitRegister("__RCF_Exit")')
 
 #EndRegion Internal Global Variables
 
 #Region Public Functions
 
 ; #FUNCTION# ====================================================================================================
-; Name............: _RegisterCallbackFunction-UDF
+; Name............: _RegisterCallbackFunction
 ; Description.....: Create a callback loop for a certain function in your project.
 ; Syntax..........: _RegisterCallbackFunction-UDF ( $sFunction [, $iTimer = -1 [, $sParam = ""]] )
 ; Parameters......:	$sFunction		- The function to call.
@@ -81,7 +77,7 @@ EndIf
 ; Related.........:
 ; Link............: https://github.com/ericcornelissen/_RegisterCallbackFunction-UDF
 ; ===============================================================================================================
-Func _RegisterCallbackFunction-UDF ( $sFunction, $iTimer = -1, $sParam = "" )
+Func _RegisterCallbackFunction ( $sFunction, $iTimer = -1, $sParam = "" )
    If $iTimer < 0 Or IsInt ( $iTimer ) = 0 Or IsString ( $iTimer ) = 1 Then $iTimer = $d__CDF_SYS_DEFAULTTIMER
 
    $i__CBF_SYS_Callback += 1
